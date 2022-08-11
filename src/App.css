@@ -1,7 +1,18 @@
+
 .grid-wrap {
   display: grid;
 }
 
 .App {
-  min-height: 100%;
+  height: 100%;
+}
+
+.main-wrapper {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+form {
+  max-width: 1200px;
 }
