@@ -67,12 +67,10 @@ export default function Form() {
     {
       firstName: "",
       lastName: "",
-      ID: "",
-      department: "",
-      employmentStatus: "",
+      iD: "",
+      departmentName: "",
       email: "",
       accommodations: "",
-      isFriendly: true,
       employment: "",
     }
   );
@@ -88,14 +86,14 @@ export default function Form() {
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+    // event.preventDefault();
     // submitToApi(formData)
     console.log(formData);
   }
 
   return (
     <div className="main-wrapper">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="post" action="/">
         <StyledGridWrap className="grid-wrap">
           <h1>Magnify Access Form</h1>
           <div className="input-wrapper first-name">
@@ -122,7 +120,7 @@ export default function Form() {
               placeholder="ID"
               onChange={handleChange}
               name="iD"
-              value={formData.ID}
+              value={formData.iD}
             />
           </div>
           <div className="input-wrapper department-name">
@@ -130,8 +128,8 @@ export default function Form() {
               type="text"
               placeholder="Department Name"
               onChange={handleChange}
-              name="department"
-              value={formData.department}
+              name="departmentName"
+              value={formData.departmentName}
             />
           </div>
           <div className="input-wrapper email">
@@ -189,7 +187,7 @@ export default function Form() {
             </div>
             <div className="file-wrapper">
               <label htmlFor="formFile" className="form-label">Add Image</label>
-              <input className="form-control" type="file" id="formFile" name="image" accept="image/*" />
+              <input className="form-control" type="file" id="formFile" name="file" accept="image/*" />
             </div>
           </div>
           <button type='submit' id='submit-button'>Submit</button>
