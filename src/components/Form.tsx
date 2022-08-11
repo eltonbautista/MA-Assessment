@@ -31,7 +31,6 @@ const StyledGridWrap = styled.div`
 
 h3 {
   padding-bottom: 1em;
-  padding-top: 1em;
 }
 
   input, textarea, #submit-button {
@@ -54,6 +53,10 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+  }
+
+  .file-wrapper {
+    margin-top: 1em;
   }
 
 
@@ -185,7 +188,7 @@ export default function Form() {
               />
             </div>
             <div className="file-wrapper">
-              <label htmlFor="formFile" className="form-label">Image</label>
+              <label htmlFor="formFile" className="form-label">Add Image</label>
               <input className="form-control" type="file" id="formFile" name="image" accept="image/*" />
             </div>
           </div>
