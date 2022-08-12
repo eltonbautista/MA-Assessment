@@ -41,8 +41,12 @@ const formSubmission = {
 const Submission = mongoose.model("Submission", formSubmission);
 
 app.get("/", (req, res) => {
-  res.sendFile('index.html');
+  // res.sendFile('index.html');
+  Submission.find({}, function(err, sub) {
+    console.log(sub);
+  })
 });
+
 
 app.post("/", (req, res) => {
   console.log(req.body);
