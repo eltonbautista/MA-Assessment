@@ -1,6 +1,7 @@
 import React, { FormEvent } from 'react';
 import styled from 'styled-components';
 import formurlencoded from 'form-urlencoded';
+import e from 'express';
 // Create a Submission Form where employees can include information in the following fields:
 // - Identification information (name, ID, department, employment status, email)
 // Accommodation requests
@@ -72,15 +73,23 @@ export default function Form() {
       email: "",
       accommodations: "",
       employment: "",
+      file: ""
     }
   );
 
   function handleChange(event: any) {
     const { name, value, type, checked } = event.target;
+
     setFormData(prevFormData => {
+      if (name) {
+        return {
+          ...prevFormData,
+          [name]: type === "checkbox" ? checked : value
+        };
+      }
+      const file = event.target.files[0];
       return {
-        ...prevFormData,
-        [name]: type === "checkbox" ? checked : value
+        ...prevFormData, file
       };
     });
   }
@@ -192,10 +201,17 @@ export default function Form() {
             </div>
             <div className="file-wrapper">
               <label htmlFor="formFile" className="form-label">Add Image</label>
-              <input className="form-control" type="file" id="formFile" name="file" accept="image/*" />
+              <input
+                className="form-control"
+                type="file"
+                id="formFile"
+                accept="image/*"
+                name="file"
+                onChange={(e) => handleChange(e)}
+                value={formData.file} />
             </div>
           </div>
-          <button type='submit' id='submit-button'>Submit</button>
+          <button type='submit' id='submit-button' name='file'>Submit</button>
         </StyledGridWrap>
       </form>
     </div>
