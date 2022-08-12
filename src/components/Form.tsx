@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 import styled from 'styled-components';
-
+import formurlencoded from 'form-urlencoded';
 // Create a Submission Form where employees can include information in the following fields:
 // - Identification information (name, ID, department, employment status, email)
 // Accommodation requests
@@ -85,15 +85,20 @@ export default function Form() {
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    // event.preventDefault();
-    // submitToApi(formData)
-    console.log(formData);
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const response = await fetch("http://localhost:3000/", {
+      method: 'POST', mode: 'cors', body: formurlencoded(formData), headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Access-Control-Allow-Origin": "*"
+      }
+    });
+    console.log(response);
   }
 
   return (
     <div className="main-wrapper">
-      <form onSubmit={handleSubmit} method="post" action="/">
+      <form onSubmit={handleSubmit} method="post">
         <StyledGridWrap className="grid-wrap">
           <h1>Magnify Access Form</h1>
           <div className="input-wrapper first-name">
